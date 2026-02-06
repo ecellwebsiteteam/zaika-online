@@ -24,16 +24,18 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-3 items-center h-20">
           {/* Logo Section - Left Align */}
-          <div className="flex items-center gap-2 justify-self-start">
-            <div className="w-8 h-8 md:w-10 md:h-10 bg-white border-2 border-black rounded-full flex items-center justify-center">
+          <div className="flex items-center gap-3 justify-self-start">
+            <div className="w-12 h-12 sm:w-10 sm:h-10 md:w-14 md:h-14 bg-white border-2 border-black rounded-full flex items-center justify-center overflow-hidden">
               <img
                 src="./FF_logo2026.png"
                 alt="Food Fiesta Logo"
-                className="rounded-full"
+                className="w-full h-full object-cover"
               />
             </div>
+
             <h1
-              className="text-xl sm:text-2xl md:text-3xl font-black text-black tracking-tighter truncate max-w-[200px] sm:max-w-none"
+              /* Changed tracking-tighter to tracking-[0.15em] for better spacing */
+              className="text-3xl sm:text-2xl md:text-4xl font-black text-black tracking-[0.15em] truncate max-w-[250px] sm:max-w-none"
               style={{ fontFamily: "'Bangers', cursive" }}
             >
               FOOD FIESTA
