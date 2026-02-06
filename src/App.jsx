@@ -40,19 +40,11 @@ const App = () => {
       options={{ autoRaf: false }}
     >
       <div>
-        {/* Fixed Navbar (hidden on Food Fiesta page which has its own navbar) */}
-        {!hideMainNavbar && (
-          <div className="fixed top-0 left-[0] w-[100vw] z-50 pointer-events-auto">
-            {/* <NavBar /> */}
-            <Navbar />
-          </div>
-        )}
         
         <ScrollToTop lenis={lenisRef.current?.lenis} />
 
         {/* Routes */}
         <Routes>
-          
     
           <Route path="/" element={<FoodFiesta />} />
           <Route path="/about" element={<About />} />
