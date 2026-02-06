@@ -27,7 +27,7 @@ const Navbar = () => {
           <div className="flex items-center gap-2 justify-self-start">
             <div className="w-8 h-8 md:w-10 md:h-10 bg-white border-2 border-black rounded-full flex items-center justify-center">
               <img
-                src="public\FF_logo2026.png"
+                src="./FF_logo2026.png"
                 alt="Food Fiesta Logo"
                 className="rounded-full"
               />
