@@ -23,19 +23,32 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 w-full z-50 bg-[#FFD700] border-b-4 border-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-3 items-center h-20">
-          
           {/* Logo Section - Left Align */}
           <div className="flex items-center gap-2 justify-self-start">
-             <div className="w-8 h-8 md:w-10 md:h-10 bg-white border-2 border-black rounded-full flex items-center justify-center">
-                <ChefHat className="w-5 h-5 md:w-6 md:h-6 text-black" />
-             </div>
-             <h1 className="text-xl sm:text-2xl md:text-3xl font-black text-black tracking-tighter truncate max-w-[200px] sm:max-w-none" style={{ fontFamily: "'Bangers', cursive" }}>FOOD FIESTA</h1>
+            <div className="w-8 h-8 md:w-10 md:h-10 bg-white border-2 border-black rounded-full flex items-center justify-center">
+              <img
+                src="public\FF_logo2026.png"
+                alt="Food Fiesta Logo"
+                className="rounded-full"
+              />
+            </div>
+            <h1
+              className="text-xl sm:text-2xl md:text-3xl font-black text-black tracking-tighter truncate max-w-[200px] sm:max-w-none"
+              style={{ fontFamily: "'Bangers', cursive" }}
+            >
+              FOOD FIESTA
+            </h1>
           </div>
 
           {/* Desktop Navigation - Center Align */}
           <div className="hidden md:flex justify-self-center items-center space-x-12">
-            {['Home', 'Event', 'Contact'].map((item) => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="text-black font-bold text-xl hover:underline decoration-4 decoration-[#ff3333] underline-offset-4" style={{ fontFamily: "'Comic Neue', cursive" }}>
+            {["Home", "Event", "Contact"].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-black font-bold text-xl hover:underline decoration-4 decoration-[#ff3333] underline-offset-4"
+                style={{ fontFamily: "'Comic Neue', cursive" }}
+              >
                 {item}
               </a>
             ))}
@@ -43,19 +56,32 @@ const Navbar = () => {
 
           {/* Desktop Register Button - Right Align */}
           <div className="hidden md:flex justify-self-end items-center">
-             <Button 
-                className="bg-[#ff3333] text-white font-bold border-2 border-black hover:bg-[#cc0000] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all text-lg px-6 tracking-wide"
-                style={{ fontFamily: "'Bangers', cursive" }}
-                onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSd99b2QEWfRWLBgnomGPladGO6EfRgYiBoId5ETIU5STjDKMw/viewform?pli=1', '_blank')}
-             >
-                Register Now
-             </Button>
+            <Button
+              className="bg-[#ff3333] text-white font-bold border-2 border-black hover:bg-[#cc0000] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all text-lg px-6 tracking-wide"
+              style={{ fontFamily: "'Bangers', cursive" }}
+              onClick={() =>
+                window.open(
+                  "https://docs.google.com/forms/d/e/1FAIpQLSd99b2QEWfRWLBgnomGPladGO6EfRgYiBoId5ETIU5STjDKMw/viewform?pli=1",
+                  "_blank",
+                )
+              }
+            >
+              Register Now
+            </Button>
           </div>
 
           {/* Mobile Menu Toggle - Right Align on Mobile */}
           <div className="flex items-center md:hidden justify-self-end">
-            <button onClick={() => setIsOpen(!isOpen)} type="button" className="inline-flex items-center justify-center p-2 rounded-md text-black hover:text-gray-900 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black">
-              {isOpen ? <X className="block h-8 w-8" /> : <Menu className="block h-8 w-8" />}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              type="button"
+              className="inline-flex items-center justify-center p-2 rounded-md text-black hover:text-gray-900 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black"
+            >
+              {isOpen ? (
+                <X className="block h-8 w-8" />
+              ) : (
+                <Menu className="block h-8 w-8" />
+              )}
             </button>
           </div>
         </div>
@@ -64,26 +90,31 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden bg-[#FFD700] border-t-4 border-black absolute top-full left-0 w-full shadow-2xl z-40">
           <div className="flex flex-col px-6 py-6 space-y-4">
-             {['Home', 'Event', 'Contact'].map((item) => (
-              <a 
-                key={item} 
-                href={`#${item.toLowerCase()}`} 
-                className="text-black text-2xl font-black uppercase tracking-wide py-3 text-center border-b-4 border-black/10 hover:bg-white/20 rounded-xl transition-colors" 
+            {["Home", "Event", "Contact"].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-black text-2xl font-black uppercase tracking-wide py-3 text-center border-b-4 border-black/10 hover:bg-white/20 rounded-xl transition-colors"
                 style={{ fontFamily: "'Bangers', cursive" }}
                 onClick={() => setIsOpen(false)}
               >
                 {item}
               </a>
             ))}
-             <div className="pt-4 pb-2">
-              <Button 
-                className="w-full bg-[#ff3333] tracking-widest text-white text-xl font-black border-4 border-black py-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all" 
+            <div className="pt-4 pb-2">
+              <Button
+                className="w-full bg-[#ff3333] tracking-widest text-white text-xl font-black border-4 border-black py-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all"
                 style={{ fontFamily: "'Bangers', cursive" }}
-                onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSd99b2QEWfRWLBgnomGPladGO6EfRgYiBoId5ETIU5STjDKMw/viewform?pli=1', '_blank')}
+                onClick={() =>
+                  window.open(
+                    "https://docs.google.com/forms/d/e/1FAIpQLSd99b2QEWfRWLBgnomGPladGO6EfRgYiBoId5ETIU5STjDKMw/viewform?pli=1",
+                    "_blank",
+                  )
+                }
               >
                 Register Now
               </Button>
-             </div>
+            </div>
           </div>
         </div>
       )}
