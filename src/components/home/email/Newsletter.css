@@ -1,0 +1,265 @@
+/* Newsletter.css */
+
+.newsletter-container {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(25px);
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+.newsletter-bg {
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23ff9ec7;stop-opacity:0.8" /><stop offset="30%" style="stop-color:%237b68ee;stop-opacity:0.9" /><stop offset="70%" style="stop-color:%23483d8b;stop-opacity:1" /><stop offset="100%" style="stop-color:%23191970;stop-opacity:1" /></linearGradient></defs><rect width="400" height="300" fill="url(%23grad1)" /></svg>') center/cover,
+               linear-gradient(135deg, rgba(255, 158, 199, 0.3) 0%, rgba(123, 104, 238, 0.4) 30%, rgba(72, 61, 139, 0.5) 70%, rgba(25, 25, 112, 0.6) 100%);
+}
+
+.newsletter-icon {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+.newsletter-title {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.newsletter-subtitle {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.email-form {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.email-input:focus {
+    outline: none;
+    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+.subscribe-btn {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+    backdrop-filter: blur(10px);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.subscribe-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.2));
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.subscribe-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+/* Success Animation Styles */
+.success-animation {
+    animation: fadeInScale 0.6s ease-out forwards;
+}
+
+.checkmark-container {
+    animation: bounceIn 0.8s ease-out forwards;
+}
+
+.checkmark {
+    filter: drop-shadow(0 4px 12px rgba(34, 197, 94, 0.4));
+}
+
+.checkmark-circle {
+    stroke-dasharray: 62.8;
+    stroke-dashoffset: 62.8;
+    animation: drawCircle 0.8s ease-out 0.2s forwards;
+}
+
+.checkmark-check {
+    stroke-dasharray: 12;
+    stroke-dashoffset: 12;
+    animation: drawCheck 0.5s ease-out 1s forwards;
+}
+
+.success-text h4 {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    text-align: center;
+}
+
+.success-text p {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+/* Loading spinner animation */
+.loading-spinner {
+    animation: spin 1s linear infinite;
+}
+
+/* Keyframe Animations */
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(-20px);
+    }
+    50% {
+        transform: scale(1.05) translateY(-5px);
+    }
+    70% {
+        transform: scale(0.95) translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@keyframes drawCircle {
+    0% {
+        stroke-dashoffset: 62.8;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes drawCheck {
+    0% {
+        stroke-dashoffset: 12;
+    }
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Tailwind-style animation classes */
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out 0.3s both;
+}
+
+.animate-fade-in-delay {
+    animation: fadeIn 0.6s ease-out 0.6s both;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    .newsletter-container {
+        padding: 2rem;
+        margin-bottom: 3rem;
+    }
+    
+    .newsletter-title {
+        font-size: 1.5rem;
+    }
+    
+    .newsletter-subtitle {
+        font-size: 0.875rem;
+    }
+    
+    .email-form {
+        flex-direction: column;
+        border-radius: 1rem;
+        max-width: 100%;
+    }
+    
+    .email-input {
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .subscribe-btn {
+        padding: 1rem 2rem;
+        border-radius: 0 0 1rem 1rem;
+        border-top: none;
+    }
+    
+    .checkmark {
+        width: 3rem;
+        height: 3rem;
+    }
+    
+    .success-text h4 {
+        font-size: 1.25rem;
+    }
+    
+    .success-text p {
+        font-size: 0.875rem;
+    }
+}
+
+/* Animation for loading state */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.subscribe-btn:disabled {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Enhanced focus states for accessibility */
+.email-input:focus,
+.subscribe-btn:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+}
+
+/* Hover effects for better UX */
+.newsletter-container:hover {
+    transform: translateY(-2px);
+    transition: transform 0.3s ease;
+}
+
+/* Glass morphism enhancement */
+.newsletter-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.newsletter-container:hover::after {
+    opacity: 1;
+}

@@ -1,0 +1,315 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Libre+Baskerville:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@300;400;700&display=swap");
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+.page-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  will-change: transform;
+  transform-origin: right top;
+  padding-top: 6rem; /* adjust based on your nav height */
+}
+
+body.menu-open {
+  overflow-y: hidden;
+}
+
+
+@font-face {
+  font-family: font1;
+  src: url(./assets/fonts/bb3ef058b751a6ad-s.p.woff2);
+}
+@font-face {
+  font-family: font2;
+  src: url(./assets/fonts/103fc5fac08dcb15-s.p.woff2);
+}
+@font-face {
+  font-family: cherif;
+  src: url(./assets/fonts/cherif.otf);
+}
+@font-face {
+  font-family: autobahn;
+  src: url(./assets/fonts/Autobahn.ttf);
+}
+@font-face {
+  font-family: vampire;
+  src: url(./assets/fonts/EvilVampire-Regular.ttf);
+}
+
+
+
+.menu-open-btn{
+    display: none;
+}
+.menu-close-btn{
+    display: none;
+}
+.phone-bg{
+  display: none;
+}
+@media screen and (max-width: 1100px) {
+  .phone-bg{
+  display: block;
+  object-fit: cover;
+}
+  .cursor-target-icon{
+  display: none;
+}
+.spline-bg{
+  display: none;
+}
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    height: 100vh;
+    width: min(65vw, 100%);
+    z-index: 100;
+    border-left: 1px solid #fff;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0px;
+
+    align-items: center;
+    gap: 1vh;
+    padding: 2vh 5vw 30vh;
+    transition: right 300ms ease-out;
+  }
+  .nav-links{
+    flex-direction: column;
+    font-size: clamp(1.9rem, 5vw, 4rem);
+  }
+  .nav.show{
+    right: 0;
+  }
+  
+  .menu-open-btn{
+    display: block;
+}
+.menu-close-btn{
+  padding-left: 300px;
+    display: block;
+}
+}
+
+.sponsors-btn {
+  cursor: pointer;
+  background: linear-gradient(
+    90deg,
+    rgba(125, 69, 228, 1) 10%,
+    rgba(73, 44, 201, 1) 100%
+  );
+}
+
+/* Targets any scrollable element, e.g., body */
+body {
+  background: #000;
+}
+.char {
+  display: inline-block;
+  white-space: pre;
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+
+.active-page {
+  position: relative;
+  border-radius: 5px;
+  /* Gradient background for the active page */
+
+  color: white; /* Ensure text is visible on gradient */
+}
+
+/* Bottom border using a pseudo-element */
+.active-page::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background: white;
+  /* transform: scaleX(1); */
+  transform-origin: left;
+  transition: transform 0.4s ease;
+  pointer-events: none;
+}
+
+ .about-text {       /* allows natural wrapping */ /* breaks long words only if necessary */
+  text-align: center; 
+     /* optional, makes both edges align neatly */
+}
+
+
+/* =========================  integration  ========================= */
+
+
+
+
+
+#root {
+  width: 100vw;
+  min-height: 100vh;
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+:root {
+  --container-bg: conic-gradient(from 180deg at 50% 50%, #d1d1d1, #ffffff);
+  --card-bg-bg: #383636;
+  --card-cta-bg: radial-gradient(circle, rgb(0, 0, 0) 0%, rgb(71, 71, 71) 100%);
+  --card-fg-bg: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 0.95) 0%,
+    rgb(38, 38, 38) 50%,
+    rgba(53, 53, 53, 0.95) 100%
+  );
+}
+
+.card-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+  background: var(--card-bg-bg);
+  border: 1px solid var(--card-bg-border);
+  border-radius: 10px;
+  transform-origin: left top;
+}
+
+
+
+.footer-right p {
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  font-weight: 300;
+  text-align: right;
+  line-height: 1.4;
+  transform: scale(1, 1.1);
+  user-select: none;
+  pointer-events: none;
+  max-width: 100%;
+}
+
+.card {
+  max-width: 100%;
+}
+
+/* Animation for Reviews */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Food Fiesta marquee strip */
+.animate-marquee {
+  animation: marquee 15s linear infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Custom utility classes for components */
+.text-cream {
+  color: #f5f5dc;
+}
+
+.text-30vw {
+  font-size: 30vw;
+}
+
+.w-180vw {
+  width: 180vw;
+}
+
+.tracking-tighter-custom {
+  letter-spacing: -0.05em;
+}
+
+.tracking-normal-custom {
+  letter-spacing: 0;
+}
+
+
+
+.bg-cream {
+  background-color: #f5f5dc;
+}
+
+/* Additional hover effects */
+.hover\:scale-115:hover {
+  transform: scale(1.15);
+}
+
+/* Ensure proper z-index stacking */
+.z-\[2\] {
+  z-index: 2;
+}
+
+
+.underline-hover {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.underline-hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px; /* adjust underline position */
+  width: 100%;
+  height: 1px; /* underline thickness */
+  background-color: currentColor; /* same as text color */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.underline-hover:hover::after {
+  transform: scaleX(1);
+}
+
+/* scrollbar ================================================== */
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;              /* width of the scrollbar */
+  height: 8px;             /* height for horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #1a1a1a;     /* track color */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4f46e5, #06b6d4); /* purple → cyan */
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #4338ca, #0891b2); /* darker hover */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;               /* auto | thin */
+  scrollbar-color: #4f46e5 #1a1a1a;    /* thumb | track */
+}
+html {
+  scroll-behavior: smooth;
+}   
