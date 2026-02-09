@@ -2,11 +2,16 @@ import React, { useState } from 'react';
 import { Button } from '../components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 import { Input } from '../components/ui/input';
-import { motion } from 'framer-motion';
-import { Menu, X, Utensils, Music, Calendar, MapPin, ChefHat, Pizza, Instagram, Linkedin, Clock, Star, Trophy, Briefcase } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, Utensils, Music, Calendar, MapPin, Instagram, Linkedin, Clock, Star } from 'lucide-react';
 import { ImagesSlider } from '../components/ui/images-slider';
 import { EmblaCarousel } from '../components/ui/embla-carousel';
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faUtensils,
+  faStore,
+  faMusic
+} from "@fortawesome/free-solid-svg-icons";
 
 /* 
   Neo-Brutalist Theme Constants:
@@ -20,70 +25,43 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-[#FFD700] border-b-4 border-black">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-3 items-center h-20">
+    <nav className="fixed top-0 h-20 left-0 w-full z-1000 bg-[#FFD700] border-b-4 border-black">
+      <div className="w-full px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
+          
           {/* Logo Section - Left Align */}
-          <div className="flex items-center gap-3 justify-self-start">
-            <div className="w-12 h-12 sm:w-10 sm:h-10 md:w-14 md:h-14 bg-white border-2 border-black rounded-full flex items-center justify-center overflow-hidden">
-              <img
-                src="./FF_logo2026.png"
-                alt="Food Fiesta Logo"
-                className="w-full h-full object-cover"
-              />
-            </div>
+          <div className="flex items-center gap-2 md:gap-3">
+             <img src="/squid-game-logo.jpeg" alt="Squid Game Logo" className="w-10 h-10 md:w-12 md:h-12 object-cover rounded-full border-2 border-black" />
+             <img src="/ff-logo.png" alt="Food Fiesta Logo" className="w-10 h-10 md:w-12 md:h-12 object-cover rounded-full border-2 border-black" />
 
-            <h1
-              /* Changed tracking-tighter to tracking-[0.15em] for better spacing */
-              className="text-3xl sm:text-2xl md:text-4xl font-black text-black tracking-[0.15em] truncate max-w-[250px] sm:max-w-none"
-              style={{ fontFamily: "'Bangers', cursive" }}
-            >
-              FOOD FIESTA
-            </h1>
+             {/* Food Fiesta Text - Centered on Mobile, Normal flow on Desktop */}
+             <h1 className="absolute left-1/2 -translate-x-1/2 text-3xl sm:text-4xl md:relative md:left-auto md:translate-x-0 md:text-3xl font-black text-black whitespace-nowrap" style={{ fontFamily: "'Bangers', cursive" }}>FOOD FIESTA</h1>
           </div>
 
           {/* Desktop Navigation - Center Align */}
-          <div className="hidden md:flex justify-self-center items-center space-x-12">
-            {["Home", "Event", "Contact"].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-black font-bold text-xl hover:underline decoration-4 decoration-[#ff3333] underline-offset-4"
-                style={{ fontFamily: "'Comic Neue', cursive" }}
-              >
+          <div className="hidden md:flex items-center space-x-12 flex-1 justify-center">
+            {['Home', 'Event', 'Contact'].map((item) => (
+              <a key={item} href={`#${item.toLowerCase()}`} className="text-black font-bold text-xl hover:underline decoration-4 decoration-[#ff3333] underline-offset-4" style={{ fontFamily: "'Comic Neue', cursive" }}>
                 {item}
               </a>
             ))}
           </div>
 
           {/* Desktop Register Button - Right Align */}
-          <div className="hidden md:flex justify-self-end items-center">
-            <Button
-              className="bg-[#ff3333] text-white font-bold border-2 border-black hover:bg-[#cc0000] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all text-lg px-6 tracking-wide"
-              style={{ fontFamily: "'Bangers', cursive" }}
-              onClick={() =>
-                window.open(
-                  "https://docs.google.com/forms/d/e/1FAIpQLSd99b2QEWfRWLBgnomGPladGO6EfRgYiBoId5ETIU5STjDKMw/viewform?pli=1",
-                  "_blank",
-                )
-              }
-            >
-              Register Now
-            </Button>
+          <div className="hidden md:flex items-center">
+             <Button 
+                className="bg-[#ff3333] text-white font-bold border-2 border-black hover:bg-[#cc0000] shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all text-lg px-6 tracking-wide"
+                style={{ fontFamily: "'Bangers', cursive" }}
+                onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSd99b2QEWfRWLBgnomGPladGO6EfRgYiBoId5ETIU5STjDKMw/viewform?pli=1', '_blank')}
+             >
+                Register Now
+             </Button>
           </div>
 
           {/* Mobile Menu Toggle - Right Align on Mobile */}
-          <div className="flex items-center md:hidden justify-self-end">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              type="button"
-              className="inline-flex items-center justify-center p-2 rounded-md text-black hover:text-gray-900 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black"
-            >
-              {isOpen ? (
-                <X className="block h-8 w-8" />
-              ) : (
-                <Menu className="block h-8 w-8" />
-              )}
+          <div className="flex items-center md:hidden">
+            <button onClick={() => setIsOpen(!isOpen)} type="button" className="inline-flex items-center justify-center p-2 rounded-md text-black hover:text-gray-900 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-black">
+              {isOpen ? <X className="block h-8 w-8" /> : <Menu className="block h-8 w-8" />}
             </button>
           </div>
         </div>
@@ -92,31 +70,26 @@ const Navbar = () => {
       {isOpen && (
         <div className="md:hidden bg-[#FFD700] border-t-4 border-black absolute top-full left-0 w-full shadow-2xl z-40">
           <div className="flex flex-col px-6 py-6 space-y-4">
-            {["Home", "Event", "Contact"].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="text-black text-2xl font-black uppercase tracking-wide py-3 text-center border-b-4 border-black/10 hover:bg-white/20 rounded-xl transition-colors"
+             {['Home', 'Event', 'Contact'].map((item) => (
+              <a 
+                key={item} 
+                href={`#${item.toLowerCase()}`} 
+                className="text-black text-2xl font-black uppercase tracking-wide py-3 text-center border-b-4 border-black/10 hover:bg-white/20 rounded-xl transition-colors" 
                 style={{ fontFamily: "'Bangers', cursive" }}
                 onClick={() => setIsOpen(false)}
               >
                 {item}
               </a>
             ))}
-            <div className="pt-4 pb-2">
-              <Button
-                className="w-full bg-[#ff3333] tracking-widest text-white text-xl font-black border-4 border-black py-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all"
+             <div className="pt-4 pb-2">
+              <Button 
+                className="w-full bg-[#ff3333] tracking-widest text-white text-xl font-black border-4 border-black py-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] transition-all" 
                 style={{ fontFamily: "'Bangers', cursive" }}
-                onClick={() =>
-                  window.open(
-                    "https://docs.google.com/forms/d/e/1FAIpQLSd99b2QEWfRWLBgnomGPladGO6EfRgYiBoId5ETIU5STjDKMw/viewform?pli=1",
-                    "_blank",
-                  )
-                }
+                onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSd99b2QEWfRWLBgnomGPladGO6EfRgYiBoId5ETIU5STjDKMw/viewform?pli=1', '_blank')}
               >
                 Register Now
               </Button>
-            </div>
+             </div>
           </div>
         </div>
       )}
@@ -154,14 +127,31 @@ const Hero = () => {
                 <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-black leading-none mb-6 relative" style={{ fontFamily: "'Bangers', cursive", textShadow: "4px 4px 0 #FFD700" }}>
                   FOOD FIESTA <span className="text-[#ff3333]">2026</span>
                 </h1>
-                <p className="mt-6 text-xl md:text-2xl text-black font-bold max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: "'Comic Neue', cursive" }}>
-                  Satisfy your cravings with the craziest culinary carnival! Street food, gourmet bites, and music beats all in one place.
-                </p>
                 
-                <div className="mt-10 flex justify-center items-center">
-                   <Button size="lg" onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSd99b2QEWfRWLBgnomGPladGO6EfRgYiBoId5ETIU5STjDKMw/viewform?pli=1', '_blank')} className="text-xl px-12 py-8 bg-[#FFD700] text-black font-black border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] transition-all transform hover:bg-[#FFD700] active:scale-95 tracking-wide" style={{ fontFamily: "'Bangers', cursive" }}>
-                    Register Now ✨
-                   </Button>
+                {/* Food Description and Order Section */}
+                <div className="mt-8 flex flex-col items-center gap-3">
+                   {/* Blue description box with skew */}
+                   <div className="bg-[#007BFF] border-4 border-black p-5 md:p-6 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] max-w-3xl w-full transform -rotate-1">
+                      <p className="text-white text-lg md:text-xl font-bold text-center leading-snug" style={{ fontFamily: "'Comic Neue', cursive" }}>
+                         Satisfy your cravings with the craziest culinary carnival! Street food, gourmet bites, and music beats all in one place.
+                      </p>
+                   </div>
+
+                   {/* Order Now section */}
+                   <div className="flex flex-col items-center gap-2">
+                      <h3 className="text-2xl md:text-3xl font-black text-black tracking-wide italic" style={{ fontFamily: "'Bangers', cursive", fontStyle: 'italic' }}>
+                         ORDER NOW ON
+                      </h3>
+                      <div className="shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] rounded-full inline-block transition-all hover:shadow-none">
+                         <Button
+                            size="lg"
+                            className="text-2xl md:text-3xl px-14 py-6 bg-[#ff3333] text-white font-black border-4 border-black hover:translate-x-[3px] hover:translate-y-[3px] transition-all transform hover:bg-[#FFD700] hover:text-black active:bg-[#FFD700] active:text-black active:scale-95 tracking-widest rounded-full"
+                            style={{ fontFamily: "'Bangers', cursive" }}
+                         >
+                            ZAIKAA
+                         </Button>
+                      </div>
+                   </div>
                 </div>
              </div>
           </motion.div>
@@ -172,7 +162,7 @@ const Hero = () => {
 
 const Marquee = () => {
     return (
-        <div className="bg-black text-[#FFD700] py-3 border-y-4 border-black overflow-hidden whitespace-nowrap sticky top-20 z-40 transform rotate-[-1deg] w-[105%] -ml-[2.5%] flex antialiased shadow-lg">
+        <div className="bg-black text-[#FFD700] py-3 border-y-4 border-black overflow-hidden whitespace-nowrap  top-20 z-10 transform rotate-[-1deg] w-[105%] -ml-[2.5%] flex antialiased shadow-lg">
             <div className="animate-marquee inline-block font-black text-2xl min-w-full px-4 flex-shrink-0 tracking-widest" style={{ fontFamily: "'Bangers', cursive" }}>
                 REGISTER NOW • LIVE MUSIC • AMAZING FOOD • FUN GAMES • CHEF SPECIALS • REGISTER NOW • LIVE MUSIC • AMAZING FOOD • FUN GAMES • CHEF SPECIALS • 
             </div>
@@ -185,40 +175,74 @@ const Marquee = () => {
 
 const Features = () => {
   const features = [
-    { title: "Culinary Stalls", icon: <ChefHat className="w-10 h-10" />, desc: "Fresh, hygienic & pure vegetarian delicacies by student chefs.", color: "bg-[#ff3333]" },
-    { title: "Business Stalls", icon: <Briefcase className="w-10 h-10" />, desc: "Innovative ideas & entrepreneurial initiatives on display.", color: "bg-[#007BFF]" },
-    { title: "Yuva Vibes", icon: <Music className="w-10 h-10" />, desc: "Celebrate with music, fun games, and the spirit of Pratistha.", color: "bg-[#FFD700]" },
+    {
+      title: "Culinary Stalls",
+      icon: <FontAwesomeIcon icon={faUtensils} className="text-black text-3xl" />,
+      desc: "Fresh, hygienic & pure vegetarian delicacies by student chefs.",
+      color: "bg-[#ff3333]",
+    },
+    {
+      title: "Business Stalls",
+      icon: <FontAwesomeIcon icon={faStore} className="text-black text-3xl" />,
+      desc: "Innovative ideas & entrepreneurial initiatives on display.",
+      color: "bg-[#007BFF]",
+    },
+    {
+      title: "Yuva Vibes",
+      icon: <FontAwesomeIcon icon={faMusic} className="text-black text-3xl" />,
+      desc: "Celebrate with music, fun games, and the spirit of Pratistha.",
+      color: "bg-[#FFD700]",
+    },
   ];
 
   return (
     <section id="event" className="py-20 bg-white">
-       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-           <div className="text-center mb-16">
-               <h2 className="text-5xl font-black text-black mb-4" style={{ fontFamily: "'Bangers', cursive" }}>WHAT TO EXPECT?</h2>
-               <div className="h-2 w-32 bg-black mx-auto"></div>
-           </div>
-           
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-               {features.map((f, i) => (
-                   <Card key={i} className={`transform hover:-translate-y-2 transition-all duration-300 ${f.color} border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]`}>
-                       <CardHeader>
-                           <div className="w-16 h-16 bg-white border-4 border-black rounded-full flex items-center justify-center mb-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
-                               {f.icon}
-                           </div>
-                           <CardTitle className="text-3xl text-white" style={{ textShadow: "2px 2px 0 #000" }}>{f.title}</CardTitle>
-                       </CardHeader>
-                       <CardContent>
-                           <p className="text-lg font-bold text-black bg-white/50 p-2 rounded border-2 border-black/20">
-                               {f.desc}
-                           </p>
-                       </CardContent>
-                   </Card>
-               ))}
-           </div>
-       </div>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Heading */}
+        <div className="text-center mb-16">
+          <h2
+            className="text-5xl font-black text-black mb-4"
+            style={{ fontFamily: "'Bangers', cursive" }}
+          >
+            WHAT TO EXPECT?
+          </h2>
+          <div className="h-2 w-32 bg-black mx-auto"></div>
+        </div>
+
+        {/* Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {features.map((f, i) => (
+            <Card
+              key={i}
+              className={`transform hover:-translate-y-2 transition-all duration-300 ${f.color} border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]`}
+            >
+              <CardHeader>
+                <div className="w-16 h-16 bg-white border-4 border-black rounded-full flex items-center justify-center mb-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]">
+                  {f.icon}
+                </div>
+
+                <CardTitle
+                  className="text-3xl text-white"
+                  style={{ textShadow: "2px 2px 0 #000" }}
+                >
+                  {f.title}
+                </CardTitle>
+              </CardHeader>
+
+              <CardContent>
+                <p className="text-lg font-bold text-black bg-white/60 p-3 rounded border-2 border-black/20">
+                  {f.desc}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+      </div>
     </section>
-  )
-}
+  );
+};
 
 
 
@@ -261,19 +285,19 @@ const Timeline = () => {
            <div className="absolute bottom-10 left-10 text-6xl font-black text-black/10 -rotate-12 pointer-events-none select-none hidden md:block" style={{ fontFamily: "'Bangers', cursive" }}>ZAP!</div>
 
            <div className="max-w-6xl mx-auto px-4">
-              <div className="text-center mb-16 relative z-10">
+              <div className="text-center mb-16 relative ">
                   <h2 className="text-5xl md:text-6xl font-black text-black mb-4 uppercase" style={{ fontFamily: "'Bangers', cursive" }}>
                       Event <span className="text-[#ff3333] inline-block transform -rotate-2">Timeline</span>
                   </h2>
                   <div className="h-2 w-32 bg-black mx-auto"></div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-14  relative ">
                   {events.map((e, i) => (
                       <div key={i} className={`relative group ${e.fullWidth ? 'md:col-span-2' : ''}`}>
                            {/* Badge */}
                            {e.badge && (
-                              <div className={`absolute -top-6 -right-4 z-20 ${e.badge === 'CLOSED' ? 'bg-[#ff3333] text-white' : 'bg-[#FFD700] text-black'} border-4 border-black px-4 py-1 transform rotate-12 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-black text-sm`}>
+                              <div className={`absolute -top-6 -right-4 z-1 ${e.badge === 'CLOSED' ? 'bg-[#ff3333] text-white' : 'bg-[#FFD700] text-black'} border-4 border-black px-4 py-1 transform rotate-12 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] font-black text-sm`}>
                                   {e.badge}
                               </div>
                            )}
@@ -300,7 +324,7 @@ const Timeline = () => {
                   ))}
               </div>
 
-              <div className="mt-16 text-center relative z-10 w-full flex justify-center">
+              <div className="mt-16 text-center relative w-full flex justify-center">
                   <Button onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSd99b2QEWfRWLBgnomGPladGO6EfRgYiBoId5ETIU5STjDKMw/viewform?pli=1', '_blank')} className="text-lg md:text-xl px-6 py-6 md:px-10 md:py-8 w-full md:w-auto whitespace-normal h-auto leading-tight bg-white text-black font-black border-4 border-black shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px] hover:bg-gray-50 transition-all tracking-wide" style={{ fontFamily: "'Bangers', cursive" }}>
                       REGISTER YOUR STALL
                   </Button>
@@ -349,7 +373,7 @@ const Contact = () => {
 
     return (
         <section id="contact" className="py-20 bg-[#fceba7] relative">
-             <div className="max-w-4xl mx-auto px-4 relative z-10 w-full text-center">
+             <div className="max-w-4xl mx-auto px-4 relative  w-full text-center">
                  <Card className="bg-white border-4 border-black p-4 sm:p-12 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]">
                      <CardHeader>
                          <div className="w-20 h-20 bg-[#25D366] rounded-full border-4 border-black flex items-center justify-center mx-auto mb-6 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] animate-bounce">
